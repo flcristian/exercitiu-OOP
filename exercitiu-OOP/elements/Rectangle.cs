@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace exercitiu_OOP.elements
 {
-    public class Rectangle : Figure
+    public class Rectangle : IFigure
     {
         private Line _top;
         private Line _right;
@@ -72,7 +72,7 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Translate(int x, int y)
+        public void Translate(int x, int y)
         {
             _top.Translate(x, y);
             _right.Translate(x, y);
@@ -80,7 +80,7 @@ namespace exercitiu_OOP.elements
             _left.Translate(x, y);
         }
 
-        public override void TranslateOX(int x)
+        public void TranslateOX(int x)
         {
             _top.TranslateOX(x);
             _right.TranslateOX(x);
@@ -88,7 +88,7 @@ namespace exercitiu_OOP.elements
             _left.TranslateOX(x);
         }
 
-        public override void TranslateOY(int y)
+        public void TranslateOY(int y)
         {
             _top.TranslateOY(y);
             _right.TranslateOY(y);
@@ -96,12 +96,13 @@ namespace exercitiu_OOP.elements
             _left.TranslateOY(y);
         }
 
-        public override void Afisare()
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            string desc = $"RECTANGLE:\nTop :\n{_top}Right :\n{_right}Bottom :\n{_bottom}Left :\n{_left}";
+            Console.WriteLine(desc);
         }
 
-        public override Rectangle Duplicare()
+        public IFigure Duplicare()
         {
             return new Rectangle(this.Top, this.Right, this.Bottom, this.Left);
         }

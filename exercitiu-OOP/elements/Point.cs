@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace exercitiu_OOP.elements
 {
-    public class Point : Figure
+    public class Point : IFigure
     {
         private int _x;
         private int _y;
@@ -49,28 +49,29 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Translate(int x, int y)
+        public void Translate(int x, int y)
         {
             _x = _x + x;
             _y = _y + y;
         }
 
-        public override void TranslateOX(int x)
+        public void TranslateOX(int x)
         {
             _x = _x + x;
         }
         
-        public override void TranslateOY(int y)
+        public void TranslateOY(int y)
         {
             _y = _y + y;
         }
 
-        public override void Afisare()
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            string desc = $"POINT:\nx={_x}, y={_y}\n";
+            Console.WriteLine(desc);
         }
 
-        public override Point Duplicare()
+        public IFigure Duplicare()
         {
             return new Point(this.X, this.Y);
         }

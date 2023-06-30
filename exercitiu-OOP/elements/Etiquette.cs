@@ -43,27 +43,29 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Translate(int x, int y)
+        public void Translate(int x, int y)
         {
             base.Translate(x, y);
         }
 
-        public override void TranslateOX(int x)
+        public void TranslateOX(int x)
         {
             base.TranslateOX(x);
         }
 
-        public override void TranslateOY(int y)
+        public void TranslateOY(int y)
         {
             base.TranslateOY(y);
         }
 
-        public override void Afisare()
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            string desc = "ETIQUETTE:\n" + base.ToString();
+            desc += $"Text : {_text}";
+            Console.WriteLine(desc);
         }
 
-        public override Rectangle Duplicare()
+        public IFigure Duplicare()
         {
             return new Etiquette(base.Top, base.Right, base.Bottom, base.Left, this.Text);
         }

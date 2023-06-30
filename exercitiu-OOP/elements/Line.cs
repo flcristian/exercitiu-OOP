@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace exercitiu_OOP.elements
 {
-    public class Line : Figure
+    public class Line : IFigure
     {
         private Point _P1;
         private Point _P2;
@@ -57,34 +57,43 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Translate(int x, int y)
+        
+        public void Translate(int x, int y)
         {
             _P1.Translate(x, y);
             _P2.Translate(x, y);
         }
 
-        public override void TranslateOX(int x)
+        
+        public void TranslateOX(int x)
         {
             _P1.TranslateOX(x);
             _P2.TranslateOX(x);
         }
 
-        public override void TranslateOY(int y)
+      
+        public void TranslateOY(int y)
         {
             _P1.TranslateOY(y);
             _P2.TranslateOY(y);
         }
 
-        public override void Afisare()
+     
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            string desc = "LINE:\n";
+            desc += $"P1: {_P1}";
+            desc += $"P2: {_P2}";
+            Console.WriteLine(desc);
         }
 
-        public override Line Duplicare()
+        
+        public IFigure Duplicare()
         {
             return new Line(this.P1, this.P2);
         }
 
+      
         public override bool Equals(object? obj)
         {
             return (obj as Line).P1.Equals(_P1) && (obj as Line).P2.Equals(_P2);
