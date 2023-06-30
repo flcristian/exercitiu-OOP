@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace exercitiu_OOP.elements
 {
-    public class Circle : Figure
+    public class Circle : IFigure
     {
         private Point _center;
         private Line _radius;
@@ -49,30 +49,32 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Translate(int x, int y)
+        public void Translate(int x, int y)
         {
             _center.Translate(x, y);
             _radius.Translate(x, y);
         }
 
-        public override void TranslateOX(int x)
+        public void TranslateOX(int x)
         {
             _center.TranslateOX(x);
             _radius.TranslateOX(x);
         }
 
-        public override void TranslateOY(int y)
+        public void TranslateOY(int y)
         {
             _center.TranslateOY(y);
             _radius.TranslateOY(y);
         }
 
-        public override void Afisare()
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            string desc = $"CIRCLE:\nCenter: {_center}";
+            desc += $"Radius:\n{_radius}";
+            Console.WriteLine(desc);
         }
 
-        public override Circle Duplicare()
+        public IFigure Duplicare()
         {
             return new Circle(this.Center, this.Radius);
         }

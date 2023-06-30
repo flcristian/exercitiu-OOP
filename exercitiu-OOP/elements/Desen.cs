@@ -7,27 +7,27 @@ using System.Threading.Tasks;
 
 namespace exercitiu_OOP.elements
 {
-    public class Desen : Figure
+    public class Desen : IFigure
     {    
-        private List<Figure> _figures;
+        private List<IFigure> _figures;
 
         // Constructors
 
         public Desen()
         {
-            _figures = new List<Figure>();
+            _figures = new List<IFigure>();
         }
 
-        public Desen(List<Figure> figures)
+        public Desen(List<IFigure> figures)
         {
             _figures = figures;
         }
 
         // Methods
 
-        public bool AddFigure(Figure figure)
+        public bool AddIFigure(IFigure figure)
         {
-            foreach(Figure check in _figures)
+            foreach(IFigure check in _figures)
             {
                 if (figure.Equals(check))
                 {
@@ -43,7 +43,7 @@ namespace exercitiu_OOP.elements
         {
             string desc = "";
 
-            foreach(Figure figure in _figures)
+            foreach(IFigure figure in _figures)
             {
                 Console.WriteLine(figure.ToString());
             }
@@ -51,16 +51,19 @@ namespace exercitiu_OOP.elements
             return desc;
         }
 
-        public override void Afisare()
+        public void Afisare()
         {
-            Console.WriteLine(this);
+            foreach (IFigure figure in _figures)
+            {
+                figure.Afisare();
+            }
         }
 
-        public override Desen Duplicare()
+        public IFigure Duplicare()
         {
-            List<Figure> duped = new List<Figure>();
+            List<IFigure> duped = new List<IFigure>();
             
-            foreach(Figure figure in _figures)
+            foreach(IFigure figure in _figures)
             {
                 duped.Add(figure.Duplicare());
             }
@@ -68,102 +71,28 @@ namespace exercitiu_OOP.elements
             return new Desen(duped);
         }
 
-        public override void Translate(int x, int y)
+        public void Translate(int x, int y)
         {
-            foreach (Figure figure in _figures)
+            foreach (IFigure figure in _figures)
             {
                 figure.Translate(x, y);
             }
         }
 
-        public override void TranslateOX(int x)
+        public void TranslateOX(int x)
         {
-            foreach (Figure figure in _figures)
+            foreach (IFigure figure in _figures)
             {
                 figure.TranslateOX(x);
             }
         }
 
-        public override void TranslateOY(int y)
+        public void TranslateOY(int y)
         {
-            foreach (Figure figure in _figures)
+            foreach (IFigure figure in _figures)
             {
                 figure.TranslateOY(y);
             }
-        }
-
-        public void Menu()
-        {
-            bool running = true;
-            while (running)
-            {
-                this.AfisareComenzi();
-                string k = Console.ReadLine();
-
-                switch (k)
-                {
-                    case "1":
-                        this.Afisare();
-                        break;
-                    case "2":
-                        this.TranslateOXMenu();
-                        break;
-                    case "3":
-                        this.TranslateOYMenu();
-                        break;
-                    case "4":
-                        this.TranslateMenu();
-                        break;
-                    default:
-                        running = false;
-                        break;
-                }
-            }
-        }
-
-        public void AfisareComenzi()
-        {
-            Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-            Console.WriteLine("Introduceti :");
-            Console.WriteLine("1 - Afiseaza desenul");
-            Console.WriteLine("2 - Translateaza desenul pe axa OX");
-            Console.WriteLine("3 - Translateaza desenul pe axa OY");
-            Console.WriteLine("4 - Translateaza desenul pe ambele axe");
-            Console.WriteLine();
-        }
-
-        public void TranslateMenu()
-        {
-            Console.WriteLine("Introdu cu cat doresti sa translatezi pe axa OX :");
-            int x = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Introdu cu cat doresti sa translatezi pe axa OY :");
-            int y = Int32.Parse(Console.ReadLine());
-
-            this.Translate(x, y);
-            Console.WriteLine("Desenul a fost translatat cu succes.");
-        }
-
-        public void TranslateOXMenu()
-        {
-            Console.WriteLine("Introdu cu cat doresti sa translatezi pe axa OX :");
-            int x = Int32.Parse(Console.ReadLine());
-
-            this.TranslateOX(x);
-            Console.WriteLine("Desenul a fost translatat cu succes.");
-        }
-
-        public void TranslateOYMenu()
-        {
-            Console.WriteLine("Introdu cu cat doresti sa translatezi pe axa OY :");
-            int y = Int32.Parse(Console.ReadLine());
-
-            this.TranslateOY(y);
-            Console.WriteLine("Desenul a fost translatat cu succes.");
-        }
-
-        public int FigureCount()
-        {
-            return _figures.Count();
         }
 
         public override bool Equals(object? obj)

@@ -14,8 +14,8 @@ namespace testing_exercitiu_OOP
             Etiquette etiquette1 = new Etiquette(box1, "TEXT1");
             Etiquette etiquette2 = new Etiquette(box1, "TEXT2");
             Etiquette etiquette3 = new Etiquette(box1, "TEXT");
-            List<Figure> figures = new List<Figure> { etiquette1, etiquette2, etiquette3 };
-            List<Figure> check = new List<Figure> { etiquette2, etiquette3, box1 };
+            List<IFigure> figures = new List<IFigure> { etiquette1, etiquette2, etiquette3 };
+            List<IFigure> check = new List<IFigure> { etiquette2, etiquette3, box1 };
             Desen desen = new Desen(figures);
             Desen checkDesen = new Desen(check);
 
@@ -30,8 +30,8 @@ namespace testing_exercitiu_OOP
             Rectangle box = new Rectangle(new Line(0, 0, 1, 1), new Line(1, 1, 2, 1), new Line(2, 0, 2, 1), new Line(0, 0, 2, 0));
             Etiquette etiquette1 = new Etiquette(box, "TEXT");
             Etiquette etiquette2 = new Etiquette(box, "TEXT");
-            List<Figure> figures = new List<Figure> { etiquette1, etiquette2 };
-            List<Figure> check = new List<Figure> { etiquette1, etiquette2 };
+            List<IFigure> figures = new List<IFigure> { etiquette1, etiquette2 };
+            List<IFigure> check = new List<IFigure> { etiquette1, etiquette2 };
             Desen desen = new Desen(figures);
             Desen checkDesen = new Desen(check);
 
@@ -40,42 +40,42 @@ namespace testing_exercitiu_OOP
         }
 
         [Fact]
-        public void AddFigure_NoMatch_AddsFigure_ReturnsTrue()
+        public void AddIFigure_NoMatch_AddsIFigure_ReturnsTrue()
         {
             // Arrange
             Point toAdd = new Point(0, 0);
-            List<Figure> list = new List<Figure>();
+            List<IFigure> list = new List<IFigure>();
             Desen desen = new Desen(list);
 
             // Act
-            bool add = desen.AddFigure(toAdd);
+            bool add = desen.AddIFigure(toAdd);
 
             // Assert
             Assert.True(add);
-            Assert.Equal(1, desen.FigureCount());
+            Assert.Equal(1, desen.IFigureCount());
         }
 
         [Fact]
-        public void AddFigure_ValidMatch_DoesNotAddFigure_ReturnsFalse()
+        public void AddIFigure_ValidMatch_DoesNotAddIFigure_ReturnsFalse()
         {
             // Arrange
             Point toAdd = new Point(0, 0);
-            List<Figure> list = new List<Figure> { toAdd.Duplicare() };
+            List<IFigure> list = new List<IFigure> { toAdd.Duplicare() };
             Desen desen = new Desen(list);
 
             // Act
-            bool add = desen.AddFigure(toAdd);
+            bool add = desen.AddIFigure(toAdd);
 
             // Assert
             Assert.False(add);
-            Assert.Equal(1, desen.FigureCount());
+            Assert.Equal(1, desen.IFigureCount());
         }
 
         [Fact]
         public void Duplicare_ReturnsSameDrawing()
         {
             // Arrange
-            List<Figure> list = new List<Figure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
+            List<IFigure> list = new List<IFigure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
             Desen desen = new Desen(list);
 
             // Assert
@@ -87,8 +87,8 @@ namespace testing_exercitiu_OOP
         public void Translate_MakesCorrectChanges()
         {
             // Arrange
-            List<Figure> list = new List<Figure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
-            List<Figure> check = new List<Figure> { new Point(1, 2), new Point(2, 4), new Point(4, 6) };
+            List<IFigure> list = new List<IFigure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
+            List<IFigure> check = new List<IFigure> { new Point(1, 2), new Point(2, 4), new Point(4, 6) };
             Desen desen = new Desen(list);
             Desen checkDesen = new Desen(check);
 
@@ -103,8 +103,8 @@ namespace testing_exercitiu_OOP
         public void TranslateOX_MakesCorrectChanges()
         {
             // Arrange
-            List<Figure> list = new List<Figure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
-            List<Figure> check = new List<Figure> { new Point(1, 0), new Point(2, 2), new Point(4, 4) };
+            List<IFigure> list = new List<IFigure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
+            List<IFigure> check = new List<IFigure> { new Point(1, 0), new Point(2, 2), new Point(4, 4) };
             Desen desen = new Desen(list);
             Desen checkDesen = new Desen(check);
 
@@ -119,8 +119,8 @@ namespace testing_exercitiu_OOP
         public void TranslateOY_MakesCorrectChanges()
         {
             // Arrange
-            List<Figure> list = new List<Figure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
-            List<Figure> check = new List<Figure> { new Point(0, 2), new Point(1, 4), new Point(3, 6) };
+            List<IFigure> list = new List<IFigure> { new Point(0, 0), new Point(1, 2), new Point(3, 4) };
+            List<IFigure> check = new List<IFigure> { new Point(0, 2), new Point(1, 4), new Point(3, 6) };
             Desen desen = new Desen(list);
             Desen checkDesen = new Desen(check);
 
